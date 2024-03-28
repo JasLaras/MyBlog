@@ -7,7 +7,7 @@ MyBlog is a simple yet powerful blogging platform I made for myrself developed u
 
 ## Course Information
 
-This project was created as part of the Udemy course "Python Django - The Practical Guide"[https://www.udemy.com/course/python-django-the-practical-guide/?couponCode=GENAISALE24] by Maximilian Schwarzmüller. The course covers various aspects of web development with Django, including models, views, templates, forms, authentication, and deployment.
+This project was created as part of the Udemy course ("Python Django - The Practical Guide")[https://www.udemy.com/course/python-django-the-practical-guide/?couponCode=GENAISALE24] by Maximilian Schwarzmüller. The course covers various aspects of web development with Django, including models, views, templates, forms, authentication, and deployment.
 
 ## Features
 
