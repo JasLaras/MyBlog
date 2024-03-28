@@ -1,0 +1,20 @@
+Course Project: Building the Blog - The Basics
+
++ Setting up the Starting Project
+django-admin startproject my_blogger
+conda create --name my_blogger
+python3 manage.py startapp blog # creates sub-app
+
++ Planning the Project
+URLS & VIEWS
+- / --> load starting page which lists latest blog posts and some welcome text
+- /posts --> load page which lists all blog posts
+- /posts/my-first-post --> load individual blog post page which shows full blog post (with dynamic segment /posts/<slug>)
+- "Slugs" always look something like this: my-post-is-here =>SEO-friendly unique identifiers
+
++ Adding URLS & Views
+- slug transformer checks if the concrete value, which is passed in path("posts/<slug:slug>"), has the slug format
+- other transformers are int: and str:
+
++ Adding First Templates
+-

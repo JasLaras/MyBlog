@@ -1,0 +1,104 @@
+Working with Templates & Static Files
+~ Rendering Complete Pages
+~ Understanding "Templates"
+~ Django Template Language Features
+~ Working with Static Files (CSS, Javascript, Images)
+
++ Adding & Registering Templates
+- create "templates" folder in "challenges" sub-app folder, and then another "challenges" folder in templates
+- in challenge.html write "html" click on html 5. it will generate a skeleton
+- add <title> and <h1> and <h2>
+- in challenges > views.py add at top: from django.template.loader import render_to_string
+- in def monthly_challenges: response_data = render_to_string("challenges/challenge.html")
+- add 'challenges', to INSTALLED_APPS = [ in settings.py
+
++ Rendering Templates
+- delete from django.template.loader import render_to_string in challenges > views.py
+- in def monthly_challenge(request, month): add return render(request, "challenges/challenge.html") above response_data = render_to_string("challenges/challenge.html")
+        return HttpResponse(response_data) and delete those
+
++ Template Language & Variable Interpolation
+- Django has its own template language (The Django Template Language (DTL))
+- create HTML files that can enhance and create dynamic pages
+- standard HTML syntax + special DTL syntax (to dynamically create html elements into the html file to send back customized dynamic response to the client) = dynamic HTML page
+- at this point we have a STATIC html page
+- first step "text" key value pair as variables in dictionary argument views.py
+- next step is to take the key value pair and use it in challenge.html with special syntax picked up by django
+
++ Filters
+- filters are adjustments/transformations that we can add with interpolation
+- title filter: {{ value|title }}
+
++ The Django Visual Studio Code Extension
+- Django extension will help with django development in general but especially templates
+
++ Tags & the "for" Tag
+- tags are a syntax feature built into the DTL
+- the for tag allows us to loop through content
+- a "block" OR a DTL "tag"
+
++ The URL Tag for Dynamic URLs
+- interpolation syntax
+
++ The "if" Tag for Conditional Content
+- if there is no text/monthly challenge for a month, add if conditional in challenge.html
+
++ Template Inheritance
+...
+
++ More on the Django Template Language (DTL)
+- Accessing Dictionary Fields in Templates:
+When accessing dictionary data in a template, you DON'T use this syntax:
+
+{{ myDictionary['some_key'] }}
+
+Instead, you use the dot notation - as if it were a regular Python object:
+
+{{ myDictionary.some_key }}
+
+This might look strange, but keep in mind, that the DTL is a custom-made language. It looks like Python, but ultimately it is NOT Python - it's a language parsed and executed by Django. Hence, its syntax can deviate - just as it does here.
+
+- Calling Functions in Templates
+Calling functions in templates also works differently than it does in Python.
+
+Instead of calling it, you use functions like regular variables or properties.
+
+I.e., instead of:
+
+{{ result_from_a_function() }}
+
+you would use
+
+{{ result_from_a_function }}
+
++ 404 Templates
+- 404 file should be placed in root templates file
+- DEBUG = True
+
++ Adding Static Files
+- in challenges app, add folder static and subfolder challenges in static, then challenges.css
+
++ Adding Global Static Files
+- Google Fonts -> select font and style -> import
+
++ Adding CSS Styling
+...
+
++ Building Static URLs Dynamically
+Later in the course, we'll see an example for a static URL, that is built dynamically.
+
+What do I mean with that?
+
+Imagine, that you want to build a static URL where some part of the URL (e.g. the filename) is actually stored in a variable that's exposed to the template.
+
+So you might want to build the URL like this:
+
+{% static "my_path/to/" + the_file %}
+
+Here, "the_file" would be a variable holding the actual filename.
+
+The above code would fail.
+
+Instead, you can use the "add" filter provided by Django to construct this path dynamically:
+
+{% static "my_path/to/"|add:the_file %}

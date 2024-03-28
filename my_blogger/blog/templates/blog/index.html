@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %} 
+My Blog 
+{% endblock %} 
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "blog/index.css" %}" />
+{% endblock %}
+
+{% block content %}
+<header id="main-navigation">
+  <h1><a href="">Jasmine's Blog</a></h1>
+  <nav>
+    <a href="">All Posts</a>
+  </nav>
+</header>
+
+<section id="welcome">
+  <header>
+    <img src="{% static "blog/images/pfp.jpg" %}" alt="Jasmine - The Author Of This Blog" />
+    <h2>JASMINE'S BLOG</h2>
+  </header>
+  <p>Hi, I'm Jasmine and I love to blog about science, tech, language, food and art!</p>
+</section>
+
+<section id="latest-posts">
+  <h2>My Latest Thoughts</h2>
+
+  <ul>
+    <li>
+      <article class="post">
+        <a href="">
+          <img src="{% static "blog/images/Capture1.JPG" %}" alt="AI Voices" />
+          <div class="post__content">
+            <h3>AI Voices??</h3>
+            <p>
+              Why are all our AI voices female? Siri, Alexa, ...
+              And all the intelligent and fictional AI voices male? Jarvis (Iron Man 2), Sully (I, Robot), ...
+            </p>
+          </div>
+        </a>
+      </article>
+    </li>
+  </ul>
+</section>
+
+<section id="about">
+  <h2>What I Do</h2>
+  <p>
+    I'm currently an undergraduate student studying Cognitive and Computer Science. 
+    I work as an IT Assistant for the bus system on my college campus. 
+    And in my free time, I play Stardew Valley, study Italian and Turkish, and collect sonny angels!
+  </p>
+  <p>
+    My goal is to be a Renaissance Woman! I've always been fascinated with Da Vinci, and 
+    I've always dreamed to grow into an individual who can honestly call themselves a polymath and a polyglot!
+  </p>
+</section>
+{% endblock %}

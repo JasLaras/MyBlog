@@ -1,0 +1,26 @@
+- install python (or python --version in terminal)
+- install django (python3 -m pip install Django)
+- (sudo apt install python3-django)
+- start django project (django-admin startproject [mypage])
+- open vs code folder
+
+- Extensions: Python, Pylance (getting code checks and code completion)
+- https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
+- To enable Pylance in your Python/Django project, can add a special setting to your project-specific configuration (ie .vscode/settings.json file):
+
+{
+
+"python.languageServer": "Pylance",
+
+}
+
+- vs code > file > preferences > keyboard shortcuts > search format document keybind (Shift + Alt + F)
+- save changes in vs code (Ctrl + S)
+
+- python manage.py runserver
+- create challenges sub-app for the mypage project (python manage.py startapp [challenges])
+- "App" ~= "Module"
+- ie like Google project with the apps Google Search, Google Drive, Google images, etc OR Amazon project with the apps Amazon Musics, Amazon Prime, Amazon shop, etc etc
+
+- create virtual environment for mypage (conda create --name mypage)
+- output list of my envs to ensure it was created (conda info --envs) 

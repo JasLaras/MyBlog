@@ -1,0 +1,116 @@
+URLS (Routes) & Views
++ What are "URLs" (or "Routes")?
+- my-page.com/ > show starting page
+- my-page.com/posts > show list of all posts
+- my-page.com/posts/python-is-great > show a specific post
+- URLs > Result
+
+- URL Config/Routes: URL-Action mappings which ensure that certain results are achieved when certain URLs are entered by the user
+
++ What are "Views"?
+- holds the logic that is executed for different URLs (and Http methods) 
+- > Function + Class > code that handles (evaluates) requests and returns responses (load & prepare data, run any other business logic, prepare and return response data (eg HTML)) 
+
++ Understanding Requests & Responses
+- python3 manage.py runserver
+- challenges > view.py > enter python function:
+
+def index():
+    return HttpResponse("This works!")
+
+- create urls.py file in challenges
+
+from django.urls import path
+
+urlpatterns = [
+    path("january", views.index)
+]
+
+- go to monthly_challenges > urls.py
+- add path("challenges/", include("challenges.urls")) to:
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+
+- Request/Response Flow: Client (User/Browser) > Request > Server (running Python Django) > URLconf (can have multiple View functions) > View > Response > Client (back here)
+
+- can change the functions to (in challenges > views.py):
+def january(request):
+    return HttpResponse("Eat no meat for the entire month!")
+
+def february(request):
+    return HttpResponse("Walk for at least 20 minutes every day!")
+
+- and to challenges > urls.py:
+urlpatterns = [
+    path("january", views.january),
+    path("february", views.february),
+] 
+
+- in challenges > views.py instead of adding url patterns for all 12 months, you can do this: 
+def monthly_challenge_by_number(request, month):
+    return HttpResponse(month)
+
+def monthly_challenge(request, month):
+    challenge_text = None
+    if month == "january": 
+        challenge_text = "Eat no meat for the entire month!"
+    elif month == "february":
+        challenge_text = "Walk for at least 20 minutes every day!"
+    elif month == "march":
+        challenge_text = "Learn Django for at least 20 minutes every day!"
+    else:
+        return HttpResponseNotFound("This month is not supported!")
+    return HttpResponse(challenge_text)
+
+- but not in every scenario could you know how many blog posts you need or want for a url cus you need to know how many for this scenario
+- and in challenges > urls.py you can:
+urlpatterns = [
+    path("<int:month>", views.monthly_challenge_by_number),
+    path("<str:month>", views.monthly_challenge)
+] 
+
+- add each month to challenges > views.py: 
+monthly_challenges = {
+    "january": "Eat no meat for the entire month!",
+    "february": "Walk for at least 20 minutes every day!",
+    "march": "Learn Django for at least 20 minutes every day!",
+    "april": "Eat no meat for the entire month!", 
+    "may": "Walk for at least 20 minutes every day!", 
+    "june": "Learn Django for at least 20 minutes every day!", 
+    "july": "Eat no meat for the entire month!", 
+    "august": "Walk for at least 20 minutes every day!", 
+    "september": "Learn Django for at least 20 minutes every day!", 
+    "october": "Eat no meat for the entire month!", 
+    "november": "Learn Django for at least 20 minutes every day!", 
+    "december": "Walk for at least 20 minutes every day!"
+}
+
+def monthly_challenge_by_number(request, month):
+    return HttpResponse(month)
+
+def monthly_challenge(request, month):
+    try:
+        challenge_text = monthly_challenges[month]
+        return HttpResponse(challenge_text)
+    except:
+        return HttpResponseNotFound("This month is not supported!")
+
+- testing dictionary keys challenges > views.py to have numbers match the month numbers (ie 1 to january):
+def monthly_challenge_by_number(request, month):
+    months = list(monthly_challenges.keys()) # dict
+    
+    if month > len(months):
+        return HttpResponseNotFound("Invalid month") # if you put a number like 15 lol
+    
+    redirect_month = months[month - 1] #starting with january
+    return HttpResponseRedirect("/challenges/" + redirect_month)
+
+
++ Delivering Content & Processing Input
+
+
+
+FOR PAGE NOT FOUND 404 ERROR: paste this in the search bar: 
+localhost:8000/challenges/
