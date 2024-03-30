@@ -1,5 +1,6 @@
 # MyBlog
-This project is a personal blog website built with Django.
+This project is a personal blog website built with Django! Here's a preview of my blog as a work in progress:
+<img width="1124" alt="Capture" src="https://github.com/JasLaras/MyBlog/assets/72766476/262378dc-28ba-4482-8786-86bec24ca890">
 
 ## Description
 
